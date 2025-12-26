@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shoplane | Premium eCommerce</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/gemini.css" />
+
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    
+    <style>
+      /* Cart badge styling */
+      .cart-badge {
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        background: #dc3545;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 7px;
+        font-size: 12px;
+        font-weight: bold;
+        display: none;
+      }
+      
+      .nav-link {
+        position: relative;
+      }
+
+      /* Auth buttons */
+      .auth-buttons {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .auth-buttons .btn {
+        padding: 6px 20px;
+        font-size: 14px;
+        border-radius: 20px;
+      }
+
+      /* Logged in user display */
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 15px;
+        background: #f8f9fa;
+        border-radius: 20px;
+      }
+
+      .user-name {
+        font-weight: 600;
+        color: #333;
+      }
+
+      .logout-btn {
+        background: none;
+        border: none;
+        color: #dc3545;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 0 10px;
+      }
+
+      .logout-btn:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">SHOPLANE</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#">Clothing</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Accessories</a>
+            </li>
+            
+            <!-- Gemini AI Icon in Header -->
+            <li class="nav-item">
+              <a class="nav-link gemini-nav-link" href="#" onclick="openGemini(); return false;" title="Ask Gemini AI">
+                <i class="fas fa-robot"></i>
+                <span class="gemini-text">AI Assistant</span>
+              </a>
+            </li>
+            
+            <!-- Cart Icon in Navbar -->
+            <li class="nav-item">
+              <a class="nav-link" href="cart.html">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">0</span>
+              </a>
+            </li>
+            
+            <!-- Auth Section: Shows Login/Signup OR User Info -->
+            <li class="nav-item" id="auth-section">
+              <!-- Dynamic content will be inserted here by JavaScript -->
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO BANNER: CAROUSEL -->
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#heroCarousel"
+          data-bs-slide-to="0"
+          class="active"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#heroCarousel"
+          data-bs-slide-to="1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#heroCarousel"
+          data-bs-slide-to="2"
+        ></button>
+      </div>
+
+      <div class="carousel-inner">
+        <!-- Banner 1 -->
+        <div class="carousel-item active">
+          <img src="img/img1.png" class="d-block w-100" alt="Fashion" />
+          <div class="carousel-caption">
+            <h2>PUMA Flat 30% Offer</h2>
+            <p>Upgrade your wardrobe with the latest collection</p>
+            <a href="#" class="btn btn-primary">Shop Now</a>
+          </div>
+        </div>
+
+        <!-- Banner 2 -->
+        <div class="carousel-item">
+          <img src="img/img2.png" class="d-block w-100" alt="Shoes" />
+          <div class="carousel-caption">
+            <h2>Exclusive Footwear Collection</h2>
+            <p>Get the best deals on top brands</p>
+            <a href="#" class="btn btn-primary">Shop Now</a>
+          </div>
+        </div>
+
+        <!-- Banner 3 -->
+        <div class="carousel-item">
+          <img src="img/img3.png" class="d-block w-100" alt="Watches" />
+          <div class="carousel-caption">
+            <h2>Luxury Watches Collection</h2>
+            <p>Stylish and premium designs for all occasions</p>
+            <a href="#" class="btn btn-primary">Shop Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Navigation -->
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#heroCarousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#heroCarousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <!-- PRODUCT CATEGORIES -->
+    <div class="container mt-5">
+      <!-- Trending Products -->
+      <h2 class="section-title">🔥 Trending Products</h2>
+      <div id="trending-products" class="row"></div>
+
+      <!-- Clothing -->
+      <h2 class="section-title mt-5">👗 Clothing Collection</h2>
+      <div id="clothing-products" class="row"></div>
+
+      <!-- Electronics -->
+      <h2 class="section-title mt-5">💻 Electronics & Gadgets</h2>
+      <div id="electronics-products" class="row"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer mt-5">
+      <div class="container">
+        <div class="row">
+          <!-- Online Store -->
+          <div class="col-md-3">
+            <h5>ONLINE STORE</h5>
+            <ul class="footer-list">
+              <li><a href="#">Men Clothing</a></li>
+              <li><a href="#">Women Clothing</a></li>
+              <li><a href="#">Men Accessories</a></li>
+              <li><a href="#">Women Accessories</a></li>
+            </ul>
+          </div>
+
+          <!-- Helpful Links -->
+          <div class="col-md-3">
+            <h5>HELPFUL LINKS</h5>
+            <ul class="footer-list">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Brand Partners -->
+          <div class="col-md-3">
+            <h5>BRAND PARTNERS</h5>
+            <ul class="footer-list">
+              <li>Zara</li>
+              <li>Pantaloons</li>
+              <li>Levi's</li>
+              <li>UCB</li>
+              <li>+ Many More</li>
+            </ul>
+          </div>
+
+          <!-- Address -->
+          <div class="col-md-3">
+            <h5>ADDRESS</h5>
+            <ul class="footer-list">
+              <li>Building 101</li>
+              <li>Central Avenue</li>
+              <li>LA - 902722</li>
+              <li>United States</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Copyright Section -->
+      <div class="row mt-4">
+        <div class="col-12 text-center">
+          <p class="copyright">
+            © 2024 Shoplane | Designed by <strong>Ashwani Upadhyay</strong>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Gemini Modal -->
+    <div class="gemini-modal" id="geminiModal">
+      <div class="gemini-content">
+        <div class="gemini-header">
+          <h3><i class="fas fa-robot"></i> Gemini AI Assistant</h3>
+          <button class="close-gemini" onclick="closeGemini()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <iframe 
+          class="gemini-iframe" 
+          id="geminiIframe"
+          src=""
+          allow="microphone; camera"
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Load cart.js BEFORE api.js so functions are available -->
+    <script src="js/cart.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/gemini.js"></script>
+
+    <script>
+      // Check if user is logged in and update navbar
+      function updateAuthSection() {
+        const authSection = document.getElementById('auth-section');
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        if (currentUser) {
+          const firstName = currentUser.name.split(' ')[0];
+          authSection.innerHTML = `
+            <div class="user-info">
+              <span class="user-name">Hi, ${firstName}!</span>
+              <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </button>
+            </div>
+          `;
+        } else {
+          authSection.innerHTML = `
+            <div class="auth-buttons">
+              <a href="login.html" class="btn btn-outline-primary btn-sm">
+                <i class="fas fa-sign-in-alt"></i> Login
+              </a>
+              <a href="signup.html" class="btn btn-primary btn-sm">
+                <i class="fas fa-user-plus"></i> Sign Up
+              </a>
+            </div>
+          `;
+        }
+      }
+
+      // Logout function
+      function logout() {
+        if (confirm('Are you sure you want to logout?')) {
+          localStorage.removeItem('currentUser');
+          window.location.reload();
+        }
+      }
+
+      // Initialize when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+        updateAuthSection();
+        loadProducts();
+      });
+    </script>
+  </body>
+</html>
