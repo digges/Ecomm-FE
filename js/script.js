@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
     payButton.disabled = true;
 
     // Create Razorpay order via your backend
-    fetch("https://paymet-be-production.up.railway.app/api/payment/create-Order", {
+    fetch("https://pay-deployment.onrender.com/api/payment/create-Order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("Payment successful!", response);
 
             // Update backend with payment success
-            fetch("https://paymet-be-production.up.railway.app/api/payment/update-Order", {
+            fetch("https://pay-deployment.onrender.com/api/payment/update-Order", {
               method: "POST",
               headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -367,4 +367,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   `;
   document.head.appendChild(style);
+
 });
