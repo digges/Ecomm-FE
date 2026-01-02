@@ -1,4 +1,4 @@
-const BASE_URL = "https://ecomm-be1-production.up.railway.app";
+const BASE_URL = "https://ecomm-deployment.onrender.com";
 
 async function loadProducts() {
     try {
@@ -67,4 +67,5 @@ async function loadProducts() {
             }
         });
     }
+
 }
